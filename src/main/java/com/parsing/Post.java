@@ -41,13 +41,37 @@ public class Post {
         this.dateOfCreated = dateOfCreated;
     }
 
+
+
+    public java.lang.String getArticleFullText() {
+        return articleFullText;
+    }
+
+    public void setArticleFullText(java.lang.String articleFullText) {
+        this.articleFullText = articleFullText;
+    }
+
+
     private String title;
     private String detailsLink;
     private String author;
     private String authorDetailsLink;
     private String dateOfCreated;
+    private String articleFullText;
 
-
+    @Override
+    public String toString() {
+//        return "Post{"+
+//                "title='" + title + '/'' +
+        return "Post{" +
+                "title='" + title + '\'' +
+                ", detailsLink='" + detailsLink + '\'' +
+                ", author='" + author + '\'' +
+                ", authorDetailsLink='" + authorDetailsLink + '\'' +
+                ", dateOfCreated='" + dateOfCreated + '\'' +
+                ", articleFullText='" + articleFullText + '\'' +
+                '}';
+    }
 }
 
 

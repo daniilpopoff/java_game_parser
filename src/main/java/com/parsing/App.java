@@ -32,10 +32,20 @@ public class App
             Document articleDetail = Jsoup.connect(post.getDetailsLink()).get();
             String title = articleDetail.selectFirst("h1").text();
             post.setTitle(title);
-            System.out.println(title);
+            String articleText = articleDetail.select("[class*=_text-width_1jfi9_108]").text();
+            post.setArticleFullText(articleText);
+            String authorLink = articleDetail.selectFirst("a._user-info_pxqm4_1116").attr("href");
+            post.setAuthorDetailsLink(authorLink);
+            String authorName = articleDetail.selectFirst("span._user-info__name_pxqm4_1137").text();
+            post.setAuthor(authorName);
+            String dateOfCreated = articleDetail.getElementsByClass("_date_1jfi9_587 _date--full_1jfi9_1").text();
+            post.setDateOfCreated(dateOfCreated);
+//            System.out.println(dateOfCreated);
+            posts.add(post);
+            posts.forEach(System.out::println);
+
 
         }
-
 
 
 //        for (Element postTitleElement : postTitleElements) {
@@ -49,6 +59,7 @@ public class App
 //                Element authorElement = postDetailsDoc.getElementsByClass("name").first().child(0);
 //                post.setAuthor(authorElement.text());
 //                post.setAuthorDetailsLink(authorElement.attr("href"));
+        //
 //                post.setDateOfCreated(postDetailsDoc.getElementsByClass("date").first().text());
 //            } catch (NullPointerException e) {
 //                post.setAuthor("Автора нет");
